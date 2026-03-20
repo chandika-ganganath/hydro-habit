@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HYDRO-HABIT | Smart Hydration Coaster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ NAVBAR ══════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">HYDRO-HABIT</div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#simulation">Simulation</a></li>
+      <li><a href="#specs">Specs</a></li>
+    </ul>
+    <a href="#simulation" class="nav-cta">Try Demo</a>
+  </nav>
+
+  <!-- ═══════════════════════════════ HERO ════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="orb orb-teal"></div>
+    <div class="orb orb-green"></div>
+
+    <div class="hero-inner">
+      <!-- LEFT -->
+      <div class="hero-text">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Next-Gen Wellness Tech
+        </div>
+        <h1 class="hero-h1">HYDRO-HABIT</h1>
+        <p class="hero-sub">Smart Hydration Coaster</p>
+        <p class="hero-desc">Bring Your Own Vessel. Track Every Sip. Zero Cables.</p>
+        <div class="hero-btns">
+          <a href="#simulation" class="btn-primary">
+            Try the Simulation
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#features" class="btn-ghost">Explore Features</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hs"><span class="hs-val">1g</span><span class="hs-lbl">= 1ml Accuracy</span></div>
+          <div class="hs-div"></div>
+          <div class="hs"><span class="hs-val">5kg</span><span class="hs-lbl">Load Cell Range</span></div>
+          <div class="hs-div"></div>
+          <div class="hs"><span class="hs-val">0</span><span class="hs-lbl">Cables Needed</span></div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="hero-visual">
+        <div class="hv-img-wrap">
+          <div class="hv-glow"></div>
+          <img src="placeholder.png" alt="Hydro-Habit Product Image" class="hv-img" />
+          <div class="hv-badge"><span class="hv-badge-dot"></span> Wi-Fi Connected</div>
+        </div>
+        <div class="hv-card" id="hv-card">
+          <div class="hvc-label">Today's Hydration</div>
+          <div class="hvc-bar-bg"><div class="hvc-bar" id="hvc-bar"></div></div>
+          <div class="hvc-val" id="hvc-val">0 <span>ml</span></div>
+          <div class="hvc-goal">Goal: 2500 ml</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="sh-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SIMULATION ═══════════════════════════════ -->
+  <section class="sim-section" id="simulation">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="tag">Interactive Demo</span>
+        <h2>See It In Action</h2>
+        <p>Simulate a real hydration session — place the mug, lift to drink, put it back, and watch your intake update live.</p>
+      </div>
+
+      <div class="sim-layout reveal">
+
+        <!-- ──────── LEFT: Device ──────── -->
+        <div class="sim-left">
+
+          <!-- Total consumed banner -->
+          <div class="consumed-banner">
+            <div class="cb-icon">💧</div>
+            <div class="cb-body">
+              <div class="cb-label">Session Total Consumed</div>
+              <div class="cb-amount" id="cb-amount">0 ml</div>
+            </div>
+            <div class="cb-prog-wrap">
+              <div class="cb-prog" id="cb-prog"></div>
+            </div>
+          </div>
+
+          <!-- Device scene -->
+          <div class="scene" id="device-scene">
+
+            <!-- MUG (starts floating above coaster) -->
+            <div class="mug-float" id="mug-float">
+              <div class="mug" id="mug">
+                <div class="mug-handle"></div>
+                <div class="mug-liquid" id="mug-liquid"></div>
+                <div class="steam-wrap" id="steam-wrap">
+                  <div class="st st1"></div>
+                  <div class="st st2"></div>
+                  <div class="st st3"></div>
+                </div>
+              </div>
+              <!-- Drinking arc (hidden until lift) -->
+              <div class="drink-arc" id="drink-arc">
+                <div class="da-drop d1"></div>
+                <div class="da-drop d2"></div>
+                <div class="da-drop d3"></div>
+              </div>
+            </div>
+
+            <!-- COASTER -->
+            <div class="coaster-group">
+              <div class="coaster" id="coaster">
+                <div class="led-ring" id="led-ring"></div>
+                <div class="coaster-face">
+                  <div class="coaster-logo">HH</div>
+                  <div class="coaster-sensors">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="coaster-shadow"></div>
+            </div>
+
+            <!-- Sip notification popup -->
+            <div class="sip-popup" id="sip-popup"></div>
+          </div>
+
+          <!-- Sip history -->
+          <div class="sip-log">
+            <div class="sip-log-header">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 2v5l3 2" stroke="var(--teal)" stroke-width="1.4" stroke-linecap="round"/>
+                <circle cx="7" cy="7" r="5.5" stroke="var(--teal)" stroke-width="1.2"/>
+              </svg>
+              Sip History
+            </div>
+            <div class="sip-log-empty" id="sip-empty">No sips recorded yet — start drinking!</div>
+            <ul class="sip-list" id="sip-list"></ul>
+          </div>
+
+        </div>
+
+        <!-- ──────── RIGHT: Controls ──────── -->
+        <div class="sim-right">
+
+          <!-- Status card -->
+          <div class="status-card">
+            <div class="sc-row">
+              <span class="sc-k">Status</span>
+              <span class="sc-badge" id="sc-badge">STANDBY</span>
+            </div>
+            <div class="sc-row">
+              <span class="sc-k">LED Ring</span>
+              <span class="sc-led">
+                <span class="sc-dot" id="sc-dot"></span>
+                <span id="sc-led-txt">Breathing Blue</span>
+              </span>
+            </div>
+            <div class="sc-row">
+              <span class="sc-k">Mug on Coaster</span>
+              <span id="sc-mug">No</span>
+            </div>
+            <div class="sc-row">
+              <span class="sc-k">Mug Lifted</span>
+              <span id="sc-lifted">No</span>
+            </div>
+            <div class="sc-row sc-row--highlight">
+              <span class="sc-k">Last Sip</span>
+              <span id="sc-last">—</span>
+            </div>
+            <div class="sc-row sc-row--highlight">
+              <span class="sc-k">Session Total</span>
+              <span id="sc-total" class="sc-total">0 ml</span>
+            </div>
+          </div>
+
+          <!-- Instruction log -->
+          <div class="instr-log" id="instr-log">
+            <p class="il il-on">💧 Click <strong>Place Mug</strong> to put your mug on the coaster.</p>
+          </div>
+
+          <!-- Control buttons -->
+          <div class="ctrl-btns">
+
+            <button class="cbtn cbtn-place" id="btn-place">
+              <span class="cbi">☕</span>
+              <span class="cbd">
+                <span class="cbd-t">Place Mug</span>
+                <span class="cbd-s">Set mug on the coaster</span>
+              </span>
+              <span class="cbtn-step">1</span>
+            </button>
+
+            <button class="cbtn cbtn-start" id="btn-start" disabled>
+              <span class="cbi">▶</span>
+              <span class="cbd">
+                <span class="cbd-t">SET / START</span>
+                <span class="cbd-s">Begin weight tracking</span>
+              </span>
+              <span class="cbtn-step">2</span>
+            </button>
+
+            <button class="cbtn cbtn-lift" id="btn-lift" disabled>
+              <span class="cbi">🤲</span>
+              <span class="cbd">
+                <span class="cbd-t">Lift &amp; Drink</span>
+                <span class="cbd-s">Raise mug, take a sip</span>
+              </span>
+              <span class="cbtn-step">3</span>
+            </button>
+
+            <button class="cbtn cbtn-back" id="btn-back" disabled>
+              <span class="cbi">⬇️</span>
+              <span class="cbd">
+                <span class="cbd-t">Place Back</span>
+                <span class="cbd-s">Record the sip volume</span>
+              </span>
+              <span class="cbtn-step">4</span>
+            </button>
+
+            <button class="cbtn cbtn-reset" id="btn-reset" disabled>
+              <span class="cbi">↺</span>
+              <span class="cbd">
+                <span class="cbd-t">RESET / SWAP</span>
+                <span class="cbd-s">Clear session &amp; start over</span>
+              </span>
+            </button>
+
+          </div>
+
+          <p class="sim-tip">💡 Repeat steps 3 → 4 as many times as you like to simulate multiple sips!</p>
+        </div>
+
+      </div><!-- /sim-layout -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FEATURES ════════════════════════════════ -->
+  <section class="feat-section" id="features">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="tag">Why Hydro-Habit</span>
+        <h2>The BYOV Advantage</h2>
+        <p>Why Hydro-Habit Stands Apart</p>
+      </div>
+      <div class="feat-grid">
+
+        <article class="feat-card reveal" style="--d:0s">
+          <div class="fc-glow"></div>
+          <span class="fc-n">01</span>
+          <div class="fc-icon fc-i-blue">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <rect x="2" y="14" width="22" height="10" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M7 14V9a6 6 0 0112 0v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="13" cy="19" r="2" fill="currentColor" opacity=".6"/>
+            </svg>
+          </div>
+          <h3>Universal BYOV Tracking</h3>
+          <p>The 5 kg load cell tracks any mug, glass, bottle, or tumbler. Precision-calibrated so 1 g = 1 ml — regardless of vessel shape or material.</p>
+          <div class="fc-tag">Load Cell · HX711 ADC</div>
+        </article>
+
+        <article class="feat-card reveal" style="--d:0.1s">
+          <div class="fc-glow fc-glow-g"></div>
+          <span class="fc-n">02</span>
+          <div class="fc-icon fc-i-green">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <rect x="3" y="7" width="8" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="15" y="7" width="8" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M11 13h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Two-Button Calibration</h3>
+          <p>Explicit SET and RESET controls eliminate false data and cup-swap conflicts — one intentional press, no guesswork, no phantom sips.</p>
+          <div class="fc-tag fc-tag-g">SET · RESET · State Machine</div>
+        </article>
+
+        <article class="feat-card reveal" style="--d:0.2s">
+          <div class="fc-glow"></div>
+          <span class="fc-n">03</span>
+          <div class="fc-icon fc-i-blue">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <path d="M3 17l5-8 5 5 4-8 6 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="3" y1="22" x2="23" y2="22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".4"/>
+            </svg>
+          </div>
+          <h3>Software Hydration Threshold</h3>
+          <p>Intelligent firmware filtering discards accidental bumps and heavy objects — only genuine drinking events count toward your daily goal.</p>
+          <div class="fc-tag">Firmware · Delta Filter</div>
+        </article>
+
+        <article class="feat-card reveal" style="--d:0.3s">
+          <div class="fc-glow fc-glow-g"></div>
+          <span class="fc-n">04</span>
+          <div class="fc-icon fc-i-green">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <rect x="2" y="6" width="22" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="13" y1="6" x2="13" y2="22" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2 2"/>
+              <path d="M6 13h4M16 13h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".6"/>
+            </svg>
+          </div>
+          <h3>Zoned Safety Architecture</h3>
+          <p>A rigid internal partition separates the 1000 mAh LiPo battery from the stress zone — protecting power from flex fatigue across thousands of uses.</p>
+          <div class="fc-tag fc-tag-g">LiPo · Structural Isolation</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SPECS ════════════════════════════════════ -->
+  <section class="specs-section" id="specs">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="tag">Under the Hood</span>
+        <h2>Technical Specifications</h2>
+      </div>
+      <div class="specs-wrap reveal">
+        <table class="specs-table">
+          <thead>
+            <tr><th>Component</th><th>Specification</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="si">⚡</span>Microcontroller</td><td>NodeMCU ESP8266</td><td>Wi-Fi &amp; Logic Control</td></tr>
+            <tr><td><span class="si">⚖️</span>Weight Sensor</td><td>5 kg Load Cell + HX711</td><td>Precision Volume Measurement</td></tr>
+            <tr><td><span class="si">🔋</span>Battery</td><td>3.7V 1000 mAh LiPo</td><td>Wireless Power Source</td></tr>
+            <tr><td><span class="si">🔌</span>Charging IC</td><td>TP4056 + Type-C Port</td><td>Safe LiPo Charging via USB-C</td></tr>
+            <tr><td><span class="si">💡</span>LED Ring</td><td>WS2812B Addressable RGB</td><td>Status Feedback &amp; Alerts</td></tr>
+            <tr><td><span class="si">🎯</span>Accuracy</td><td>±1 g / ±1 ml</td><td>Hydration Precision</td></tr>
+            <tr><td><span class="si">📡</span>Protocol</td><td>Wi-Fi 802.11 b/g/n 2.4 GHz</td><td>Cloud Sync &amp; App Comms</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <div class="f-logo">HYDRO-HABIT</div>
+        <p class="f-tag">Bring Your Own Vessel. Track Every Sip. Zero Cables.</p>
+        <div class="f-links">
+          <a href="#hero">Home</a>
+          <a href="#simulation">Simulation</a>
+          <a href="#features">Features</a>
+          <a href="#specs">Specs</a>
+        </div>
+        <p class="f-copy">© 2025 Hydro-Habit · Built for health-conscious makers.</p>
+      </div>
+    </footer>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
